@@ -72,8 +72,9 @@ class LabThemes
             Theme::make('editorial')->plugin(fn () => EditorialThemePlugin::make())->stylesheet('vite:resources/css/themes/editorial.css'),
             Theme::make('inverness')->plugin(fn () => ThemeInvernessPlugin::make())->stylesheet('vite:resources/css/themes/inverness.css'),
             Theme::make('italia')->panel(fn (Panel $panel) => FilamentItaliaTheme::applyTo($panel)),
-            // Its plugin asks for a viteTheme on the panel (it stops with a message without one), so the theme file goes there.
-            Theme::make('kinetics')->plugin(fn () => KineticsPlugin::make())->colors(['primary' => Color::Teal, 'gray' => Color::Stone])
+            // Its plugin asks for a viteTheme on the panel (it stops with a message without one), so the theme file goes
+            // there; its own Appearance page cannot join a panel mid-request, so it is off.
+            Theme::make('kinetics')->plugin(fn () => KineticsPlugin::make()->appearancePage(false))->colors(['primary' => Color::Teal, 'gray' => Color::Stone])
                 ->panel(fn (Panel $panel) => $panel->viteTheme('resources/css/themes/kinetics.css')),
             Theme::make('meui')->label('MeUI')->plugin(fn () => MeUiPlugin::make()),
             Theme::make('mia')->label('Mía')->plugin(fn () => MiaTheme::make()),

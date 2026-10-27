@@ -33,8 +33,9 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->plugins(Lab::withNitpick() ? [NitpickPlugin::make()->default('aurora')->picker(transition: false)] : [])
             ->brandName('Nitpick Theme Compat')
-            // One-click sign-in under the login form (local environment only).
-            ->plugin(AccountSwitcherPlugin::make()->developerLogins(['jane@lab.test']))
+            // One-click sign-in under the login form (local environment only), without the package's tables:
+            // linked accounts and the switch log are off, so there is nothing of it to migrate.
+            ->plugin(AccountSwitcherPlugin::make()->linkedAccounts(false)->logSwitches(false)->developerLogins(['jane@lab.test']))
             ->navigationGroups(['Shop', 'Settings'])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
