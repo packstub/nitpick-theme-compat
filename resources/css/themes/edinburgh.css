@@ -1,0 +1,3 @@
+/* Edinburgh (spykapps/theme-edinburgh): the imports its install command writes into a panel's theme file. */
+@import '../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../vendor/spykapps/theme-edinburgh/resources/css/edinburgh.css';

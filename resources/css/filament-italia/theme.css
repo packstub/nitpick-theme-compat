@@ -1,0 +1,5 @@
+@import '../../../vendor/robyconte/filament-italia/resources/css/fonts.css';
+@import 'tailwindcss';
+@import '../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../vendor/robyconte/filament-italia/resources/css/theme.css';
+@import '../../../vendor/robyconte/filament-italia/resources/css/overrides.css';

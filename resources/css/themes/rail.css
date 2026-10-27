@@ -1,0 +1,13 @@
+@import '../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../vendor/koassi/filament-rail/resources/css/theme.css';
+
+@source '../../../app/Filament/**/*';
+@source '../../../resources/views/filament/**/*';
+
+/**
+ * Project-specific overrides go below. They come after the package stylesheet, so
+ * they win — including the `--sidebar-*` and `--table-*` tokens it defines.
+ *
+ * Changing the accent colour is not done here: pass a `Filament\Support\Colors\Color`
+ * constant to `ThemePlugin::make()->accentColor(...)` and the sidebar follows it.
+ */

@@ -1,0 +1,6 @@
+@import '../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../vendor/laboiteacode/filament-laravel-tribute-template/resources/css/index.css';
+
+@source '../../../app/Filament/**/*';
+@source '../../../resources/views/filament/**/*';
+@source '../../../vendor/laboiteacode/filament-laravel-tribute-template/resources/views/**/*';

@@ -1,0 +1,6 @@
+@import '../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../vendor/vtech9nl/filament-polder-theme/resources/css/layers.css';
+@import '../../../vendor/vtech9nl/filament-polder-theme/resources/css/theme.css';
+
+@source '../../../app/Filament/**/*';
+@source '../../../resources/views/filament/**/*';

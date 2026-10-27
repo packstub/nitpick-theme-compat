@@ -1,0 +1,8 @@
+/*
+ * Kinetics (otatechie/filament-kinetics), compiled the way its docs describe: its layer
+ * order, Filament's theme, then the Kinetics stylesheet. Set as the panel's viteTheme while
+ * Kinetics is the active theme (app/Lab/LabThemes.php), as its plugin asks.
+ */
+@import '../../../vendor/otatechie/filament-kinetics/resources/css/layers.css';
+@import '../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../vendor/otatechie/filament-kinetics/resources/css/kinetics.css';

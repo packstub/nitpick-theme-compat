@@ -1,0 +1,5 @@
+/* Editorial (jeffersongoncalves/filament-editorial-theme), as its docs describe. */
+@import '../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../vendor/jeffersongoncalves/filament-editorial-theme/resources/css/theme.css';
+
+@source '../../../vendor/jeffersongoncalves/filament-editorial-theme/resources/views';

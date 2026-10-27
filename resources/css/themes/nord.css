@@ -1,0 +1,7 @@
+/*
+ * Nord (andreia/filament-nord-theme), compiled the way its docs describe: Filament's
+ * theme with the Nord stylesheet imported after it. Linked only while the Nord theme
+ * is active (app/Lab/LabThemes.php).
+ */
+@import '../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../vendor/andreia/filament-nord-theme/resources/css/theme.css';

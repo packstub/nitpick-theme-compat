@@ -1,0 +1,149 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "packstub/nitpick-theme-compat",
+    "type": "project",
+    "description": "Runs free Filament 5 themes inside Nitpick, the theme picker for Filament panels: how to set each one up, and a script that picks every theme and checks the panel.",
+    "keywords": [
+        "filament",
+        "filament-themes",
+        "nitpick",
+        "laravel"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.3",
+        "andreia/filament-nord-theme": "^3.2",
+        "andreia/filament-ui-switcher": "^1.1.2",
+        "ashrafic/filament-white-label": "^1.0.8",
+        "asignua/filament-themes": "^1.0",
+        "awcodes/light-switch": "^3.2",
+        "benriadh1/filament-benriadh-theme": "dev-main",
+        "caresome/filament-neobrutalism-theme": "^2.1",
+        "cuongpham2107/filament-theme-customizer": "^1.1",
+        "elemind/press-filament-theme": "^1.0.2",
+        "filafly/brisk": "^1.1",
+        "filament/filament": "^5.11.0",
+        "hansenmakangiras/filament-sleek-theme": "^1.3.1",
+        "irajul/filament-shadcn-theme": "^1",
+        "jeffersongoncalves/filament-editorial-theme": "^3.5",
+        "jeffersongoncalves/filament-panel-theme-isolation": "^3.0",
+        "johnrivera7/filament-mia-theme": "^0.2.3",
+        "khoirulaksara/awrel": "^1.5.5",
+        "khwr/filament-qt5-theme": "^1.1",
+        "koassi/filament-rail": "^1.0",
+        "laboiteacode/filament-laravel-tribute-template": "^1.0.2",
+        "laboiteacode/filament-tribute-theme": "^1.0",
+        "lara-zeus/akin": "^3.0.1",
+        "laravel/framework": "^13.38",
+        "laravel/tinker": "^3.0.2",
+        "nehalpatel/filament-compact-theme": "^1.0",
+        "nodonhq/filament-bodega-lite": "^1.0",
+        "noreviq/filament-theme": "^1.0.7",
+        "notwonderful/filament-moonlight-theme": "^1.0.3",
+        "octopyid/filament-palette": "^1.1",
+        "openplain/filament-shadcn-theme": "^1.1",
+        "osamanagi/filament-abyss-theme": "^1.2",
+        "osamanagi/filament-daisy-ui-themes": "^1.1",
+        "otatechie/filament-kinetics": "^1.7",
+        "packstub/filament-account-switcher": "^4.2.1",
+        "packstub/filament-nitpick": "^1.0@beta",
+        "qalainau/bonsai-theme": "^0.1.0",
+        "rafyakbar/arasy-theme": "^1.2",
+        "robyconte/filament-italia": "^1.5",
+        "saivra/meui-theme": "^0.2.0",
+        "shoplab/shoplab-filament-theme": "^1.2.1",
+        "silasrm/filament-themes": "^1.0.1",
+        "slym758/filament-filacraft-theme": "^1.2.9",
+        "spykapps/theme-aberdeen": "^1.0.1",
+        "spykapps/theme-edinburgh": "^1.0.3",
+        "spykapps/theme-inverness": "^1.0",
+        "suraj-kashyap-dev/vesper": "^2.0",
+        "thalysjuvenal/aurum-filament-theme": "^1.1.2",
+        "tomatophp/filament-simple-theme": "^5.0",
+        "vlados/filament-tailscale-theme": "^1.0.2",
+        "vtech9nl/filament-polder-theme": "^0.3.2",
+        "yavuz-dev/filament-theme": "^1.2.3"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.24.1",
+        "laravel/pail": "^1.2.7",
+        "laravel/pao": "^1.1.5",
+        "laravel/pint": "^1.32.1",
+        "mockery/mockery": "^1.6.15",
+        "nunomaduro/collision": "^8.9.5",
+        "phpunit/phpunit": "^12.5.42"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "setup": [
+            "composer install",
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php artisan key:generate",
+            "@php artisan migrate --force",
+            "npm install --ignore-scripts",
+            "npm run build"
+        ],
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php artisan dev"
+        ],
+        "test": [
+            "@php artisan config:clear --ansi @no_additional_args",
+            "@php artisan test"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ],
+        "pre-package-uninstall": [
+            "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+                "openplain/filament-shadcn-theme",
+                "vlados/filament-tailscale-theme",
+                "asignua/filament-themes",
+                "andreia/filament-ui-switcher",
+                "jeffersongoncalves/filament-panel-theme-isolation",
+                "suraj-kashyap-dev/vesper",
+                "khoirulaksara/awrel"
+            ]
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
