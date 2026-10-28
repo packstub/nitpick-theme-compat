@@ -10,6 +10,7 @@ use Elemind\PressFilamentTheme\PressFilamentTheme;
 use Filafly\Themes\Brisk\BriskTheme;
 use Filament\Panel;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
 use HansenMakangiras\FilamentSleekTheme\FilamentSleekTheme;
 use Irajul\FilamentShadcnTheme\FilamentShadcnThemePlugin;
 use JeffersonGoncalves\FilamentEditorialTheme\EditorialThemePlugin;
@@ -32,6 +33,7 @@ use Packstub\Nitpick\Facades\Themes;
 use Packstub\Nitpick\Theme;
 use Qalainau\BonsaiTheme\BonsaiThemePlugin;
 use RoBYCoNTe\FilamentItalia\FilamentItaliaTheme;
+use RuntimeException;
 use Saivra\MeUi\MeUiPlugin;
 use SpyApp\ThemeAberdeen\ThemeAberdeenPlugin;
 use SpyApp\ThemeEdinburgh\ThemeEdinburghPlugin;
@@ -110,6 +112,21 @@ class LabThemes
 
         if (Lab::isEnabled('vesper')) {
             Themes::register(Theme::make('vesper')->plugin(fn () => VesperPlugin::make()));
+        }
+
+        // Two themes that fail on purpose, to see that the user who picks one is not locked out of the panel:
+        // one while it configures the panel (a plugin that stops in boot(), packstub/filament-nitpick#6), one
+        // while the page renders (Rail without a notifications table, packstub/filament-nitpick#10). Both serve Aurora with a notice.
+        if (Lab::withFailingThemes()) {
+            Themes::register(
+                Theme::make('fails-on-boot')->label('Fails on boot')->colors(['primary' => Color::Red])
+                    ->panel(fn (Panel $panel) => throw new RuntimeException('The fails-on-boot theme failed on purpose while it configured the panel.')),
+                Theme::make('fails-on-render')->label('Fails on render')->colors(['primary' => Color::Orange])
+                    ->panel(fn (Panel $panel) => $panel->renderHook(
+                        PanelsRenderHook::BODY_END,
+                        fn (): string => throw new RuntimeException('The fails-on-render theme failed on purpose while the page rendered.'),
+                    )),
+            );
         }
     }
 }

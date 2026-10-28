@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\File;
  * What the lab runs with, set by `php artisan lab:use` and kept in storage/app/lab.json, so a
  * run never edits a tracked file: one switcher or branding tool next to Nitpick (extra), the
  * panel without Nitpick (to tell a theme's own behaviour from Nitpick's), and the packages that
- * change every panel from their service provider (global), kept out of discovery until asked for.
+ * change every panel from their service provider (global), kept out of discovery until asked for,
+ * and two themes that fail on purpose (failing), to see a user kept out of a broken theme.
  */
 class Lab
 {
@@ -34,7 +35,7 @@ class Lab
      */
     public const EXTRAS = ['asign', 'palette', 'whitelabel', 'uiswitcher', 'lightswitch', 'isolation', 'silasrm', 'customizer'];
 
-    /** @var array{extra?: string|null, nitpick?: bool, enable?: list<string>}|null */
+    /** @var array{extra?: string|null, nitpick?: bool, enable?: list<string>, failing?: bool}|null */
     protected static ?array $state = null;
 
     public static function path(): string
@@ -43,7 +44,7 @@ class Lab
     }
 
     /**
-     * @return array{extra?: string|null, nitpick?: bool, enable?: list<string>}
+     * @return array{extra?: string|null, nitpick?: bool, enable?: list<string>, failing?: bool}
      */
     public static function state(): array
     {
@@ -53,7 +54,7 @@ class Lab
     }
 
     /**
-     * @param  array{extra?: string|null, nitpick?: bool, enable?: list<string>}  $state
+     * @param  array{extra?: string|null, nitpick?: bool, enable?: list<string>, failing?: bool}  $state
      */
     public static function save(array $state): void
     {
@@ -76,6 +77,11 @@ class Lab
     public static function withNitpick(): bool
     {
         return static::state()['nitpick'] ?? true;
+    }
+
+    public static function withFailingThemes(): bool
+    {
+        return static::state()['failing'] ?? false;
     }
 
     /**

@@ -44,6 +44,7 @@ The panel's setup comes from `php artisan lab:use`, so a run never edits a track
 php artisan lab:use --extra=palette                         # a switcher or branding tool next to Nitpick
 php artisan lab:use --extra=theme:arasy --without-nitpick   # a theme straight on the panel, to compare
 php artisan lab:use --enable=vesper                         # a package that styles every panel (see below)
+php artisan lab:use --failing-themes                        # two themes that fail on purpose, to see the fallback to Aurora (Nitpick 1.0.0-beta.3)
 php artisan lab:status
 php artisan lab:reset
 ```
