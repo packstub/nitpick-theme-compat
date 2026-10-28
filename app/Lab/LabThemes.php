@@ -58,7 +58,8 @@ class LabThemes
             Theme::make('aberdeen')->plugin(fn () => ThemeAberdeenPlugin::make())->stylesheet('vite:resources/css/themes/aberdeen.css'),
             Theme::make('akin')->plugin(fn () => AkinTheme::make())->stylesheet('vite:resources/css/themes/akin.css'),
             // Its install command imports arasy.css into the panel's theme file, which its layout needs as the panel's viteTheme.
-            Theme::make('arasy')->plugin(fn () => ArasyThemePlugin::make())->panel(fn (Panel $panel) => $panel->viteTheme('resources/css/themes/arasy.css')),
+            // Its layout offsets the content by the full sidebar width only when the sidebar is collapsible on desktop.
+            Theme::make('arasy')->plugin(fn () => ArasyThemePlugin::make())->panel(fn (Panel $panel) => $panel->viteTheme('resources/css/themes/arasy.css')->sidebarCollapsibleOnDesktop()),
             Theme::make('aurum')->plugin(fn () => AurumTheme::make()),
             // After `php artisan filament-benriadh-theme:install --migrate`, which publishes its stylesheet.
             Theme::make('benriadh')->plugin(fn () => FilamentBenriadhThemePlugin::make()),

@@ -59,7 +59,7 @@ Tested versions are in `composer.lock`. "Theme file" means an entry in `resource
 | Abyss | `osamanagi/filament-abyss-theme` | `->plugin()`, its CSS in `vite.config.js` |
 | Aberdeen | `spykapps/theme-aberdeen` | `->plugin()` + theme file |
 | Akin | `lara-zeus/akin` | `->plugin()` + theme file |
-| Arasy | `rafyakbar/arasy-theme` | `->plugin()` + theme file as the panel's `viteTheme`, through `->panel()` |
+| Arasy | `rafyakbar/arasy-theme` | `->plugin()` + theme file as the panel's `viteTheme` and `->sidebarCollapsibleOnDesktop()`, through `->panel()` |
 | Aurum | `thalysjuvenal/aurum-filament-theme` | `->plugin()` |
 | Awrel | `khoirulaksara/awrel` | `->plugin()`; its stylesheet loads on every panel, so `lab:use --enable=awrel` |
 | BenRiadh | `benriadh1/filament-benriadh-theme` | `->plugin()`, after its install command |
