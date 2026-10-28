@@ -6385,16 +6385,16 @@
         },
         {
             "name": "packstub/filament-nitpick",
-            "version": "v1.0.0-beta.2",
+            "version": "v1.0.0-beta.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/packstub/filament-nitpick.git",
-                "reference": "5d75e76900648d71981ffaacc446e6765566c3e9"
+                "reference": "630fa87d03bab95dcb5f84f2cae129ef31937fa3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/packstub/filament-nitpick/zipball/5d75e76900648d71981ffaacc446e6765566c3e9",
-                "reference": "5d75e76900648d71981ffaacc446e6765566c3e9",
+                "url": "https://api.github.com/repos/packstub/filament-nitpick/zipball/630fa87d03bab95dcb5f84f2cae129ef31937fa3",
+                "reference": "630fa87d03bab95dcb5f84f2cae129ef31937fa3",
                 "shasum": ""
             },
             "require": {
@@ -6469,7 +6469,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-10-21T14:01:18+00:00"
+            "time": "2026-10-28T09:36:02+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
