@@ -9,7 +9,7 @@ const item = await openAppearance(page);
 await item.click();
 await page.waitForSelector(".fi-modal-window", { visible: true });
 await sleep(800);
-console.log(await page.evaluate(() => ['.fi-sidebar', '.fi-modal:has(.pst-theme-picker) > .fi-modal-window-ctn', '.fi-modal:has(.pst-theme-picker) > .fi-modal-close-overlay'].map((sel) => {
+console.log(await page.evaluate(() => ['.fi-sidebar', '.fi-modal:has(.nitpick-picker) > .fi-modal-window-ctn', '.fi-modal:has(.nitpick-picker) > .fi-modal-close-overlay'].map((sel) => {
   const e = document.querySelector(sel);
   return e ? `${sel} z=${getComputedStyle(e).zIndex}` : `${sel} –`;
 })));

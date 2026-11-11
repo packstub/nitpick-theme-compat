@@ -16,9 +16,9 @@ page.on('load', () => t0 && console.log(t(), 'load'));
 page.on('console', (m) => t0 && console.log(t(), 'console', m.type(), m.text().slice(0, 200)));
 
 await (await openAppearance(page)).click();
-await page.waitForSelector(`.pst-theme-option input[value="${TO}"]`, { visible: true });
+await page.waitForSelector(`.nitpick-option input[value="${TO}"]`, { visible: true });
 await sleep(400);
-const card = await page.evaluateHandle((v) => document.querySelector(`.pst-theme-option input[value="${v}"]`).closest('label'), TO);
+const card = await page.evaluateHandle((v) => document.querySelector(`.nitpick-option input[value="${v}"]`).closest('label'), TO);
 t0 = Date.now();
 await card.asElement().click();
 
@@ -26,7 +26,7 @@ let last = '';
 while (Date.now() - t0 < 15_000) {
   const now = await page.evaluate(() => {
     const html = document.documentElement;
-    return `${html.dataset.packstubTheme} cover=${!! document.querySelector('#nitpick-cover-layer') || html.hasAttribute('data-nitpick-cover')} still=${html.hasAttribute('data-nitpick-still')} modal=${!! document.querySelector('.fi-modal-window .pst-theme-picker')}`;
+    return `${html.dataset.nitpickTheme} cover=${!! document.querySelector('#nitpick-cover-layer') || html.hasAttribute('data-nitpick-cover')} still=${html.hasAttribute('data-nitpick-still')} modal=${!! document.querySelector('.fi-modal-window .nitpick-picker')}`;
   }).catch(() => 'loading');
   if (now !== last) console.log(t(), now);
   last = now;

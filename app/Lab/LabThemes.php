@@ -29,7 +29,7 @@ use Noreviq\FilamentTheme\NoreviqThemePlugin;
 use notwonderful\FilamentMoonlightTheme\MoonlightTheme;
 use Openplain\FilamentShadcnTheme\Color as ShadcnColor;
 use Otatechie\Kinetics\KineticsPlugin;
-use Packstub\Nitpick\Facades\Themes;
+use Packstub\Nitpick\Facades\Nitpick;
 use Packstub\Nitpick\Theme;
 use Qalainau\BonsaiTheme\BonsaiThemePlugin;
 use RoBYCoNTe\FilamentItalia\FilamentItaliaTheme;
@@ -54,7 +54,7 @@ class LabThemes
 {
     public static function register(): void
     {
-        Themes::register(
+        Nitpick::register(
             Theme::make('abyss')->plugin(fn () => FilamentAbyssThemePlugin::make()),
             // Its install command imports aberdeen.css into the panel's theme file.
             Theme::make('aberdeen')->plugin(fn () => ThemeAberdeenPlugin::make())->stylesheet('vite:resources/css/themes/aberdeen.css'),
@@ -107,18 +107,18 @@ class LabThemes
 
         // Packages that change every panel from their service provider: only while the lab asks for them.
         if (Lab::isEnabled('awrel')) {
-            Themes::register(Theme::make('awrel')->plugin(fn () => AwrelPlugin::make()));
+            Nitpick::register(Theme::make('awrel')->plugin(fn () => AwrelPlugin::make()));
         }
 
         if (Lab::isEnabled('vesper')) {
-            Themes::register(Theme::make('vesper')->plugin(fn () => VesperPlugin::make()));
+            Nitpick::register(Theme::make('vesper')->plugin(fn () => VesperPlugin::make()));
         }
 
         // Two themes that fail on purpose, to see that the user who picks one is not locked out of the panel:
         // one while it configures the panel (a plugin that stops in boot(), packstub/filament-nitpick#6), one
         // while the page renders (Rail without a notifications table, packstub/filament-nitpick#10). Both serve Aurora with a notice.
         if (Lab::withFailingThemes()) {
-            Themes::register(
+            Nitpick::register(
                 Theme::make('fails-on-boot')->label('Fails on boot')->colors(['primary' => Color::Red])
                     ->panel(fn (Panel $panel) => throw new RuntimeException('The fails-on-boot theme failed on purpose while it configured the panel.')),
                 Theme::make('fails-on-render')->label('Fails on render')->colors(['primary' => Color::Orange])
