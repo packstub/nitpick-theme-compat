@@ -36,7 +36,7 @@ const go = async (path) => {
 const snapshot = () => page.evaluate(() => {
   const html = document.documentElement, cs = getComputedStyle(html), body = getComputedStyle(document.body);
   return {
-    theme: html.dataset.packstubTheme ?? null,
+    theme: html.dataset.nitpickTheme ?? null,
     dark: html.classList.contains('dark'),
     sheets: [...document.querySelectorAll('link[rel=stylesheet]')].map((l) => l.getAttribute('href').replace(/\?.*$/, '')),
     styleTags: document.querySelectorAll('style').length,
@@ -45,7 +45,7 @@ const snapshot = () => page.evaluate(() => {
     gray: cs.getPropertyValue('--gray-500').trim(),
     font: body.fontFamily,
     bodyBg: body.backgroundColor,
-    htmlAttrs: [...html.attributes].map((a) => a.name).filter((n) => !['data-packstub-theme', 'style'].includes(n)).sort(),
+    htmlAttrs: [...html.attributes].map((a) => a.name).filter((n) => !['data-nitpick-theme', 'style'].includes(n)).sort(),
     bodyClass: document.body.className,
     overflowX: html.scrollWidth > innerWidth + 1,
     sidebar: !!document.querySelector('.fi-sidebar'),
@@ -60,19 +60,19 @@ const shot = async (name) => {
 // User menu → Appearance → the theme's card; a pick of a plugin theme reloads the page.
 const pick = async (id) => {
   await (await openAppearance(page)).click();
-  await page.waitForSelector(`.pst-theme-option input[value="${id}"]`, { visible: true });
+  await page.waitForSelector(`.nitpick-option input[value="${id}"]`, { visible: true });
   await sleep(300);
-  const card = await page.evaluateHandle((v) => document.querySelector(`.pst-theme-option input[value="${v}"]`).closest('label'), id);
+  const card = await page.evaluateHandle((v) => document.querySelector(`.nitpick-option input[value="${v}"]`).closest('label'), id);
   const t0 = Date.now();
   await card.asElement().click();
   while (Date.now() - t0 < 15_000) {
-    const now = await page.evaluate(() => document.documentElement.dataset.packstubTheme).catch(() => null);
+    const now = await page.evaluate(() => document.documentElement.dataset.nitpickTheme).catch(() => null);
     if (now === id) break;
     await sleep(200);
   }
   await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 4000 }).catch(() => {});
   const lifted = await settle();
-  return { ms: Date.now() - t0, lifted, reached: (await page.evaluate(() => document.documentElement.dataset.packstubTheme)) === id };
+  return { ms: Date.now() - t0, lifted, reached: (await page.evaluate(() => document.documentElement.dataset.nitpickTheme)) === id };
 };
 const diff = (a, b) => ({
   added: b.filter((x) => !a.includes(x)),
